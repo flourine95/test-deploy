@@ -1,3 +1,6 @@
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'rootpass';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
 CREATE TABLE categories
 (
     id          INT AUTO_INCREMENT PRIMARY KEY,
