@@ -58,10 +58,18 @@ public class DBConnection {
 
     private static HikariConfig createHikariConfig(Properties prop) {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl(prop.getProperty("db.url"));
-        config.setUsername(prop.getProperty("db.username"));
-        config.setPassword(prop.getProperty("db.password"));
-        config.setDriverClassName(prop.getProperty("db.driver"));
+        
+        // Ưu tiên sử dụng environment variables nếu có
+        String dbUrl = System.getenv("SPRING_DATASOURCE_URL");
+        String username = System.getenv("SPRING_DATASOURCE_USERNAME");
+        String password = System.getenv("SPRING_DATASOURCE_PASSWORD");
+        String driver = System.getenv("SPRING_DATASOURCE_DRIVER_CLASS_NAME");
+
+        // Fallback to properties file if environment variables are not set
+        config.setJdbcUrl(dbUrl != null ? dbUrl : prop.getProperty("db.url"));
+        config.setUsername(username != null ? username : prop.getProperty("db.username"));
+        config.setPassword(password != null ? password : prop.getProperty("db.password"));
+        config.setDriverClassName(driver != null ? driver : prop.getProperty("db.driver"));
 
         // Connection pool settings
         config.setMaximumPoolSize(10);
