@@ -26,10 +26,6 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-asddassda
-dsalkfja;slkdfjas
-sadjlfaskjdf;lasdkjf
-as;djfals;kdjfas
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-3 mb-4">
